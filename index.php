@@ -21,12 +21,20 @@
                     </label>
                 </div>
                 <p>Cupcake flavors</p>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="scoops[]">
-                        The Grasshopper
-                    </label>
-                </div>
+                <?php
+                $flavors = array("grasshopper"=>"The Grasshopper","maple"=>"Whiskey Maple Bacon",
+                    "carrot"=>"Carrot Walnut","caramel"=>"Salted Caramel Cupcake","velvet"=>"Red Velvet",
+                    "lemon"=>"Lemon Drop","tiramisu"=>"Tiramisu");
+                foreach ($flavors as $flavor => $name)
+                {
+                    echo '<div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="'.$flavor.'">
+                            '.$name.'
+                        </label>
+                    </div>';
+                }
+                ?>
             </div>
         </div>
     </div>
