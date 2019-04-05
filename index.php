@@ -44,6 +44,8 @@
                     <br>
                     <button type="submit" class="btn btn-primary">Order</button>
                 </form>
+            </div>
+            <div class="col-sm-4">
                 <?php
                 if($_SERVER['REQUEST_METHOD'] == 'POST')
                 {
@@ -65,17 +67,26 @@
 
                     if(empty($errors))
                     {
+                        echo '<div class="alert alert-success" role="alert"><h4>Success!</h4>';
 
+                        echo '<p>Thank you, '.$_POST['name'].', for your order!</p>';
+                        echo '<p>Order Summary:</p><ul>';
+                        foreach ($_POST['flavors'] as $cupcake)
+                        {
+                            echo "<li>$flavors[$cupcake]</li>";
+                        }
+
+                        echo '</ul><p>Order Total: $'.sizeof($_POST['flavors'])*3.5.'</p></div>';
                     }
                     else
                     {
                         echo '<div class="alert alert-danger" role="alert"><h4>Error!</h4>';
 
-                        echo '<p class="error">The following error(s) occurred:<br>';
+                        echo '<p>The following error(s) occurred:<br>';
                         foreach ($errors as $msg) { // Print each error.
                             echo " - $msg<br>\n";
                         }
-                        echo '</p><p>Please try again.</p><p><br></p>';
+                        echo '</p><p>Please try again.</p>';
                         echo '</div>';
                     }
                 }
