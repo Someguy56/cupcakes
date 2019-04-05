@@ -31,8 +31,12 @@
                     {
                         echo '<div class="form-check">'.
                             '<label class="form-check-label">'.
-                                '<input class="form-check-input" type="checkbox" name="'.$flavor.'">'.
-                                $name.
+                                '<input class="form-check-input" type="checkbox" name="flavors[]" value="'.$flavor.'"';
+                                if (isset($_POST['flavors']) && in_array($flavor, $_POST['flavors']))
+                                {
+                                    echo 'checked';
+                                }
+                                echo '>'.$name .
                             '</label>'.
                         '</div>';
                     }
@@ -54,16 +58,7 @@
                         $errors[] = "You forgot to add your name.";
                     }
 
-                    $flavors_picked = [];
-                    foreach ($flavors as $flavor)
-                    {
-                        if(!empty($_POST['"'.$flavor.'"']))
-                        {
-                            $flavors_picked[] = $flavor;
-                        }
-                    }
-
-                    if (empty($flavors_picked))
+                    if (empty($_POST['flavors']))
                     {
                         $errors[] = "You forgot to pick any cupcakes.";
                     }
