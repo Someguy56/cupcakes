@@ -10,6 +10,25 @@
     <title>Cupcake Order Form</title>
 </head>
 <body>
-    <h1>Cupcake Fundraiser</h1>
+    <h1 class="jumbotron">Cupcake Fundraiser</h1>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Your name:
+                        <input type="text" class="form-control" name="name">
+                    </label>
+                </div>
+                <p>Cupcake flavors</p>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="scoops[]">
+                        The Grasshopper
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
