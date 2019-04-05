@@ -1,3 +1,11 @@
+<!--
+    Author: Max Lee
+    Date: 4/4/2019
+    URL: http://mlee.greenriverdev.com/328/cupcakes/
+
+    This is a cupcake order form to help review PHP. The form is sticky and sanitizes inputs.
+-->
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -49,22 +57,27 @@
                 <?php
                 if($_SERVER['REQUEST_METHOD'] == 'POST')
                 {
+                    //holds all the error messages
                     $errors = [];
 
+                    //checks if a name was given
                     if(!empty($_POST['name']))
                     {
-                        $name = $_POST['name'];
+                        //sanitizes the name provided
+                        $name = filter_var($_POST['name'],FILTER_SANITIZE_STRING);
                     }
                     else
                     {
                         $errors[] = "You forgot to add your name.";
                     }
 
+                    //checks if no flavor was given
                     if (empty($_POST['flavors']))
                     {
                         $errors[] = "You forgot to pick any cupcakes.";
                     }
 
+                    //if no error messages display a success message with name, order, and cost.
                     if(empty($errors))
                     {
                         echo '<div class="alert alert-success" role="alert"><h4>Success!</h4>';
@@ -76,8 +89,9 @@
                             echo "<li>$flavors[$cupcake]</li>";
                         }
 
-                        echo '</ul><p>Order Total: $'.sizeof($_POST['flavors'])*3.5.'</p></div>';
+                        echo '</ul><p>Order Total: $'.number_format((sizeof($_POST['flavors'])*3.5),2).'</p></div>';
                     }
+                    //displays the errors
                     else
                     {
                         echo '<div class="alert alert-danger" role="alert"><h4>Error!</h4>';
